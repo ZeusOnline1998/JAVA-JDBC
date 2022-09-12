@@ -6,6 +6,8 @@ public class mysqldao {
 	
 	static EmployeeJava DAO = new EmployeeJava();
 	
+	static Scanner sc = new Scanner(System.in);
+	
 	public static void getEmployee(int emp_id) {	
 		
 		DAO.connect();
@@ -48,11 +50,34 @@ public class mysqldao {
 	
 	public static void main(String[] args) throws Exception{
 		
-		int emp_id = 1;
 		
 //		getEmployee(emp_id);
 		
-		addEmployee();
+//		addEmployee();
+		int dooperation;
+		
+		do {
+			
+			
+			System.out.print("What do you want to do?"+
+			"\n Get Employee info: 1"+
+					"\n Add Employee: 2"+
+			"\n Quit: 0"+
+					"\n Enter your choice: ");
+			dooperation = sc.nextInt();
+			if(dooperation==1){
+				System.out.print("Enter Employee Id: ");
+				getEmployee(sc.nextInt());
+			}
+			else if(dooperation==2) {
+				addEmployee();
+			}
+			else{
+				System.out.println("Goodbye!");
+				break;
+			}
+				
+		}while(dooperation!=0);
 	}
 }
 
@@ -122,7 +147,7 @@ class EmployeeJava{
 			
 		}
 		catch (Exception e){
-			e.printStackTrace();
+			System.out.println("Employee not found");
 		}
 		return null;
 			
