@@ -3,10 +3,10 @@ import java.sql.*;
 
 
 public class mysqldao {
-	public static void main(String[] args) throws Exception{
+	
+	public static void getEmployee(int emp_id) {
 		
 		EmployeeJava DAO = new EmployeeJava();
-		int emp_id = 1;
 		
 		DAO.connect();
 		
@@ -17,6 +17,12 @@ public class mysqldao {
 				"\nEmail: "+e1.getEmail()+
 				"\nDepartment: "+e1.getDepartment()+
 				"\nSalary: "+e1.getSalary());
+	}
+	public static void main(String[] args) throws Exception{
+		
+		int emp_id = 1;
+		
+		getEmployee(emp_id);
 	}
 }
 
