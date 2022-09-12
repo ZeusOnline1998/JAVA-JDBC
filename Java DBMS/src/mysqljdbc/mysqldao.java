@@ -4,9 +4,11 @@ import java.sql.*;
 
 public class mysqldao {
 	
+	static EmployeeJava DAO = new EmployeeJava();
+	
 	public static void getEmployee(int emp_id) {
 		
-		EmployeeJava DAO = new EmployeeJava();
+		
 		
 		DAO.connect();
 		
