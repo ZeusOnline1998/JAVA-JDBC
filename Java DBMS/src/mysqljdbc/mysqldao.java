@@ -6,10 +6,17 @@ public class mysqldao {
 	public static void main(String[] args) throws Exception{
 		
 		EmployeeJava DAO = new EmployeeJava();
+		int emp_id = 1;
 		
 		DAO.connect();
 		
-		DAO.getEmployee(1);
+		Employee e1 = DAO.getEmployee(emp_id);
+		
+		System.out.println("ID: "+e1.getEmp_id()+
+				"\nName: "+e1.getEmp_name()+
+				"\nEmail: "+e1.getEmail()+
+				"\nDepartment: "+e1.getDepartment()+
+				"\nSalary: "+e1.getSalary());
 	}
 }
 
@@ -47,6 +54,9 @@ class EmployeeJava{
 	public Employee getEmployee(int emp_id){
 		
 		try {
+			
+			Employee e1 = new Employee();
+			
 			String query = "Select * from "+this.employeeJavaTable+" where id="+emp_id+";";
 //			String query = "Select * from "+this.employeeJavaTable+" where emp_id = "+emp_id+";";
 //			
@@ -58,17 +68,21 @@ class EmployeeJava{
 			
 			ResultSet rs = stmt.executeQuery(query);
 			
-			while(rs.next()) {
-				String emp_name = rs.getString(2);
-				String email = rs.getString(3);
-				String department = rs.getString(4);
-				int salary = rs.getInt(5);
+			rs.next();
+			String emp_name = rs.getString(2);
+			String email = rs.getString(3);
+			String department = rs.getString(4);
+			int salary = rs.getInt(5);
 				
-				System.out.println("Employee: "+emp_name+"\nEmail: "+email
-						+"\nDeparment: "+department+"\nSalary: "+salary);
+			e1.setEmp_id(emp_id);
+			e1.setEmp_name(emp_name);
+			e1.setEmail(email);
+			e1.setDepartment(department);
+			e1.setSalary(salary);
 				
+			return e1;
 //				System.out.println(emp_name);
-			}
+			
 			
 		}
 		catch (Exception e){
